@@ -46,6 +46,6 @@ build/
 
 # Application
 application-local.yml
-application-*.yml
+!application-*.yml
 !application.yml
 *.log

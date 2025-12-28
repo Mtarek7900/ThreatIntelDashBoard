@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    # Using H2 for development (no PostgreSQL setup needed yet)
+    # PlaceHolder Passwords used for simplicity
+    url: jdbc:h2:mem:threatinteldb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+
+  security:
+    user:
+      name: admin
+      password: admin
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+  flyway:
+    enabled: true
+
+# For development, use a simple JWT secret (CHANGE IN PRODUCTION!)
+jwt:
+  secret: dev-secret-key-for-local-testing-only-minimum-256-bits-required-for-HS256-algorithm
+
+# Relaxed security for development
+logging:
+  level:
+    root: INFO
+    com.threatintel.api: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Development-friendly error details
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: always
+    include-exception: true
